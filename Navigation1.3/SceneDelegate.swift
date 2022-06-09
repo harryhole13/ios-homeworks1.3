@@ -13,10 +13,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+       
+        guard let myWindowScene = (scene as? UIWindowScene) else { return }
+        
+        let myTapBarController = UITabBarController() // создал ТаббарКонтроллер
+        
+        let feedNavController = UINavigationController(rootViewController: FeedViewController())
+        let profileNavController = UINavigationController(rootViewController: ProfileViewController())
+        
+        
+        myTapBarController.setViewControllers([
+        feedNavController,
+        profileNavController
+        ], animated: true)   //добавил в таббарконтроллер два контроллера Нави
+        
+        
+        myTapBarController.tabBar.backgroundColor = .white
+        
+        feedNavController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0) // инициализация кнопки  Лента
+        
+        profileNavController.tabBarItem = UITabBarItem(title: "профиль", image: UIImage(systemName: "person.circle.fill"), tag: 1)  // инициализация кнопки профиль
+        
+        
+        
+        window = UIWindow(windowScene: myWindowScene)
+        window?.rootViewController = myTapBarController
+        window?.makeKeyAndVisible()
+        
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
