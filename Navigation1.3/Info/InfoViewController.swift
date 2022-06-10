@@ -11,7 +11,7 @@ class InfoViewController: UIViewController {
     
     private lazy var alertButton: UIButton = {
         var button = UIButton(frame: CGRect(x: 20, y: 220, width: 250, height: 50))
-        button.setTitle("Atention", for: .normal)
+        button.setTitle("Attention", for: .normal)
         button.setTitleColor(.red, for: .normal)
         
         button.backgroundColor = .white
